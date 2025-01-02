@@ -1,15 +1,15 @@
 FROM ubuntu:22.04
 
 LABEL name="puppet-parser-validate-action"
-LABEL repository="https://github.com/exoplatform/puppet-parser-validate-action"
-LABEL homepage="https://github.com/exoplatform/puppet-parser-validate-action"
+LABEL repository="https://github.com/exo-actions/puppet-parser-validate-action"
+LABEL homepage="https://github.com/exo-actions/puppet-parser-validate-action"
 
 LABEL "com.github.actions.name"="puppet-parser-validate-action"
 LABEL "com.github.actions.description"="GitHub Action to run 'puppet parser validate' syntax check"
 LABEL "com.github.actions.icon"="share-2"
 LABEL "com.github.actions.color"="orange"
 
-LABEL "maintainer"="eXo Platform <https://github.com/exoplatform/>"
+LABEL "maintainer"="eXo Platform <https://github.com/exo-actions/>"
 
 RUN apt-get update
 RUN apt-get install -y curl gnupg wget

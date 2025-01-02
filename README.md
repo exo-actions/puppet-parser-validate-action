@@ -24,7 +24,7 @@ jobs:
       uses: actions/checkout@v3
 
     - name: puppet-parser-validate
-      uses: exoplatform/puppet-parser-validate-action@master
+      uses: exo-actions/puppet-parser-validate-action@master
       with:
         args: ./
 ```
