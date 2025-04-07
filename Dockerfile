@@ -17,11 +17,15 @@ RUN apt-get install -y curl gnupg wget
 RUN wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.30.7/yq_linux_amd64
 RUN chmod a+x /usr/local/bin/yq
 
-RUN curl -fsSL https://apt.puppetlabs.com/keyring.gpg | gpg --batch --yes --dearmor -o /usr/share/keyrings/puppet-keyring.gpg && \
-    echo "# Sources for recent versions of puppet" > /etc/apt/sources.list.d/puppetlab.list && \
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/puppet-keyring.gpg] http://apt.puppetlabs.com jammy puppet7" >> /etc/apt/sources.list.d/puppetlab.list
-RUN apt-get update
-RUN apt-get install -y puppet-agent=7.28.*
+# RUN curl -fsSL https://apt.puppetlabs.com/keyring.gpg | gpg --batch --yes --dearmor -o /usr/share/keyrings/puppet-keyring.gpg && \
+#     echo "# Sources for recent versions of puppet" > /etc/apt/sources.list.d/puppetlab.list && \
+#     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/puppet-keyring.gpg] http://apt.puppetlabs.com jammy puppet7" >> /etc/apt/sources.list.d/puppetlab.list
+# RUN apt-get update
+# RUN apt-get install -y puppet-agent=7.28.*
+
+RUN wget https://apt.puppetlabs.com/pool/jammy/puppet7/p/puppet-agent/puppet-agent_7.28.0-1jammy_amd64.deb && \
+    dpkg -i puppet-agent_7.28.0-1jammy_amd64.deb && rm puppet-agent_7.28.0-1jammy_amd64.deb
+
 COPY entrypoint.sh /entrypoint.sh
 RUN ["chmod", "+x", "/entrypoint.sh"]
 ENTRYPOINT ["/entrypoint.sh"]
