@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7
 
       - name: Dockerfile lint
         uses: docker://replicated/dockerfilelint:09a5034
@@ -25,3 +25,13 @@ jobs:
 
       - name: Docker run
         run: docker run --entrypoint /opt/puppetlabs/bin/puppet image --version
+
+      - name: Validate valid Puppet manifest (should pass)
+        run: docker run -w /manifests -v ${{ github.workspace }}/test/fixtures:/manifests image valid.pp
+
+      - name: Validate invalid Puppet manifest (should fail)
+        run: |
+          if docker run -w /manifests -v ${{ github.workspace }}/test/fixtures:/manifests image invalid.pp; then
+            echo "Expected validation to fail but it succeeded"
+            exit 1
+          fi

@@ -1,0 +1,10 @@
+# Docker build artifacts
+*.tar
+*.tar.gz
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~

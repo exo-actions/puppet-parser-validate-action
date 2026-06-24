@@ -21,7 +21,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v7
 
     - name: puppet-parser-validate
       uses: exo-actions/puppet-parser-validate-action@master
@@ -46,7 +46,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v7
 
     - name: puppet-parser-validate
       uses: docker://exoplatform/puppet-parser-validate-action:6.0
